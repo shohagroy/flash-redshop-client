@@ -22,7 +22,7 @@ const Banar = () => {
 
   return (
     <section className="py-4 mt-[7vh] border-b">
-      <div className="max-w-5xl mx-auto grid grid-cols-3 gap-4">
+      <div className="hidden max-w-5xl mx-auto lg:grid grid-cols-3 gap-4">
         {banars?.map((item, i) => (
           <div key={item?.key} className=" h-[150px]">
             <Image
@@ -35,6 +35,17 @@ const Banar = () => {
             />
           </div>
         ))}
+      </div>
+
+      <div className="px-4 lg:hidden">
+        <Image
+          className="w-full h-full duration-300 rounded-md shadow-md cursor-pointer hover:scale-105"
+          src={banars[0]?.image}
+          alt={`banar-${1}`}
+          // width={100}
+          // height={100}
+          // layout="responsive"
+        />
       </div>
     </section>
   );
