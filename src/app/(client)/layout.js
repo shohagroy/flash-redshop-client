@@ -1,15 +1,17 @@
 "use client";
 
+import Banar from "@/components/ui/Banar";
 import Footer from "@/shared/Footer";
 import Header from "@/shared/header/Header";
 
 const ClientLayout = ({ children }) => {
   return (
-    <div>
+    <main>
       <Header />
-      <div className="min-h-screen max-w-7xl mx-auto">{children}</div>
+      <Banar />
+      <div className="min-h-[93vh] max-w-5xl mx-auto">{children}</div>
       <Footer />
-    </div>
+    </main>
   );
 };
 

@@ -9,8 +9,8 @@ import React from "react";
 
 const Header = () => {
   return (
-    <section className="h-[7vh] sticky top-0 left-0 bg-white border-b-2 border-gray-300">
-      <div className="max-w-7xl mx-auto h-full">
+    <section className="h-[7vh] fixed z-50 w-full border-b-2 top-0 left-0 bg-white ">
+      <div className="max-w-5xl mx-auto h-full">
         <div className="flex justify-between items-center h-full w-full ">
           <div className="w-full">
             <Image src={Logo} alt="Flash" width={100} height={50} />
