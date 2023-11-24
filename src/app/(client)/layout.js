@@ -7,7 +7,7 @@ const ClientLayout = ({ children }) => {
   return (
     <div>
       <Header />
-      <div className="min-h-screen">{children}</div>
+      <div className="min-h-screen max-w-7xl mx-auto">{children}</div>
       <Footer />
     </div>
   );
