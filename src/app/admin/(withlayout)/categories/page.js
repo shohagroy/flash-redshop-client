@@ -13,11 +13,12 @@ const CategoryPage = () => {
     search: searchCategory,
     skip: showPage === 1 ? 0 : (showPage - 1) * 10,
   };
+
   return (
     <>
       <main>
         <section className="relative max-w-7xl mx-auto bg-gray-100 min-h-[90vh]">
-          <div className="">
+          <div className="mx-10">
             <h3 className="lg:py-4 text-xl font-semibold py-4 ">Categories</h3>
 
             {/* products search section  */}

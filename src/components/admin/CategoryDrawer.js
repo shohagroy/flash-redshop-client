@@ -6,6 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { categorySchema } from "@/schemas/category";
 import InputImage from "./InputImage";
 import Image from "next/image";
+import { useCreateNewCategoryMutation } from "@/redux/features/category/categoryApi";
 
 const CategoryDrawer = ({ open, setOpen }) => {
   const [images, setImages] = useState([]);
@@ -14,10 +15,26 @@ const CategoryDrawer = ({ open, setOpen }) => {
     tittle: "",
     icon: "",
   });
-  const onsubmit = (data) => {
+
+  const [createNewCategory, { isLoading, isError, error }] =
+    useCreateNewCategoryMutation();
+
+  const onsubmit = async (data) => {
     data.icon = images;
-    console.log("submit", data);
+
+    const result = await createNewCategory(data).unwrap();
+
+    if (result?.success) {
+      setOpen(false);
+      setCategoryInfo({
+        tittle: "",
+        icon: "",
+      });
+      setImages([]);
+      setImgPreview(false);
+    }
   };
+
   return (
     <div
       className={` h-screen w-[100vw] z-50 absolute top-0  flex justify-center items-center ${
@@ -95,7 +112,7 @@ const CategoryDrawer = ({ open, setOpen }) => {
               />
 
               <button className="w-[200px] text-center p-3 bg-blue-500 text-white mx-1 rounded-md">
-                Add Category
+                {isLoading ? "Loading..." : "Add Category"}
               </button>
             </div>
           </Form>
