@@ -3,6 +3,9 @@
 import { IoSearchOutline } from "react-icons/io5";
 import { useState } from "react";
 import CategoryDrawer from "@/components/admin/CategoryDrawer";
+import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
+import CategoryTable from "@/components/admin/CategoryTable";
+import Loading from "@/components/ui/Loading";
 
 const CategoryPage = () => {
   const [categoryDrawer, setCategoryDeawer] = useState(false);
@@ -13,6 +16,8 @@ const CategoryPage = () => {
     search: searchCategory,
     skip: showPage === 1 ? 0 : (showPage - 1) * 10,
   };
+
+  const { data, isLoading } = useGetAllCategoryQuery();
 
   return (
     <>
@@ -43,6 +48,8 @@ const CategoryPage = () => {
                 </button>
               </div>
             </div>
+
+            {isLoading ? <Loading /> : <CategoryTable data={data?.data} />}
           </div>
         </section>
 

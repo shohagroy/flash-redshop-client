@@ -13,7 +13,7 @@ const Adminlauout = ({ children }) => {
 
   const tokenInfo = token ? decodedToken(token) : {};
 
-  const { role, name } = tokenInfo;
+  const { role, name } = tokenInfo || {};
 
   useEffect(() => {
     setIsLoading(true);
@@ -48,9 +48,7 @@ const Adminlauout = ({ children }) => {
             <div className="mx-10 flex justify-center items-center ">
               <div className="text-right">
                 <p>{name}</p>
-                <small>
-                  {role === "susmallerAdmin" ? "Super Admin" : "Admin"}
-                </small>
+                <small>{role === "superAdmin" ? "Super Admin" : "Admin"}</small>
               </div>
 
               <button

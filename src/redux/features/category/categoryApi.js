@@ -10,7 +10,16 @@ export const categoryApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["categories"],
     }),
+
+    getAllCategory: build.query({
+      query: () => ({
+        url: "/categories",
+        method: "GET",
+      }),
+      providesTags: ["categories"],
+    }),
   }),
 });
 
-export const { useCreateNewCategoryMutation } = categoryApi;
+export const { useCreateNewCategoryMutation, useGetAllCategoryQuery } =
+  categoryApi;
