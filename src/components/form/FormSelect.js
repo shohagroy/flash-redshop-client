@@ -4,7 +4,7 @@ import { getErrorMessageByPropertyName } from "@/utils/schema-validator";
 // import { Input } from "antd";
 import { useFormContext, Controller } from "react-hook-form";
 
-const FormInput = ({
+const FormSelect = ({
   name,
   type,
   size = "large",
@@ -13,6 +13,7 @@ const FormInput = ({
   placeholder,
   validation,
   disabled,
+  handleChange,
   label,
   required,
 }) => {
@@ -35,22 +36,21 @@ const FormInput = ({
             *
           </span>
         ) : null}
-        <p className="w-[150px]">{label ? label : null}:</p>
+        <p className="w-[165px]">{label ? label : null}:</p>
       </div>
       <div className="w-full">
         <Controller
           control={control}
           name={name}
-          render={({ field }) => (
-            <input
-              className="px-2 py-1 bg-gray-100 ml-4 border border-black rounded-md"
-              disabled={disabled}
-              type={type}
-              size={size}
-              placeholder={placeholder}
-              {...field}
-              value={value ? value : field.value}
-            />
+          render={({ field: { value, onChange } }) => (
+            <select
+              onChange={handleChange ? handleChange : onChange}
+              className="w-full border p-2 rounded-md border-black bg-gray-100"
+              name={name}
+            >
+              <option value="admin">Admin</option>
+              <option value="superAdmin">Super Admin</option>
+            </select>
           )}
         />
         <p>
@@ -61,4 +61,4 @@ const FormInput = ({
   );
 };
 
-export default FormInput;
+export default FormSelect;
