@@ -60,6 +60,11 @@ const CategoryDrawer = ({ open, setOpen }) => {
         </div>
 
         <div className="p-4 my-10">
+          {isError && (
+            <p className="text-center px-4 py-1 bg-red-100 text-red-600 rounded-md my-2 text-xl capitalize ">
+              {error?.data?.message || "Something went Wrong!"}
+            </p>
+          )}
           <Form
             defaultValues={categoryInfo}
             resolver={yupResolver(categorySchema)}

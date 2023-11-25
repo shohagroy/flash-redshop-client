@@ -1,8 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-// import { Button, Image } from "antd";
 import React, { useEffect, useState } from "react";
-// import { CloseOutlined } from "@ant-design/icons";
-import Image from "next/image";
+import { IoIosCloseCircle } from "react-icons/io";
 
 const InputImage = ({ images = [], imgPreview, setImages }) => {
   const [previews, setPreviews] = useState([]);
@@ -66,12 +64,11 @@ const InputImage = ({ images = [], imgPreview, setImages }) => {
           >
             <button
               onClick={() => removeImage(i)}
-              className="z-50 absolute -top-3 -right-3"
+              className="z-50 text-red-600 absolute -top-3 -right-3"
               // icon={<CloseOutlined />}
               danger
-              type="primary"
             >
-              close
+              <IoIosCloseCircle />
             </button>
             <img
               className="w-[100px] h-[100px]"

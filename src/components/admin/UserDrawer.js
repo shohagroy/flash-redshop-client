@@ -17,6 +17,17 @@ const UserDrawer = ({ open, setOpen }) => {
     role: "admin",
   });
 
+  const roleOprions = [
+    {
+      lebel: "Admin",
+      value: "admin",
+    },
+    {
+      lebel: "Super Admin",
+      value: "superAdmin",
+    },
+  ];
+
   const onsubmit = async (data) => {
     const result = await createUser(data).unwrap();
 
@@ -92,7 +103,12 @@ const UserDrawer = ({ open, setOpen }) => {
                 />
               </div>
               <div className="my-2">
-                <FormSelect label={"Access Level"} name={"role"} required />
+                <FormSelect
+                  options={roleOprions}
+                  label={"Access Level"}
+                  name={"role"}
+                  required
+                />
               </div>
             </div>
 
