@@ -22,7 +22,7 @@ const SideBar = () => {
       name: "dashbord",
       pathname: "/admin",
       icon: <RxDashboard />,
-      link: "../admin/dashboard",
+      link: "../admin",
     },
     {
       name: "products",

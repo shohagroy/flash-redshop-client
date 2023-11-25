@@ -9,8 +9,10 @@ const Adminlauout = ({ children }) => {
         <div className="">
           <SideBar />
         </div>
-
-        <div className="min-h-screen w-full bg-gray-100">{children}</div>
+        <div className="w-full">
+          <div className="h-[7vh]">Header</div>
+          <div className="min-h-[90vh] w-full bg-gray-100">{children}</div>
+        </div>
       </div>
     </main>
   );
