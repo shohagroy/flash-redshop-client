@@ -4,13 +4,12 @@ import Form from "../form/From";
 import FormInput from "../form/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import InputImage from "./InputImage";
-import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import FormTextArea from "../form/FormTextArea";
 import FormSelect from "../form/FormSelect";
 import { productSchema } from "@/schemas/product";
 import { useCreateNewProductMutation } from "@/redux/features/product/productApi";
 
-const ProductDrawer = ({ open, setOpen }) => {
+const ProductDrawer = ({ open, setOpen, categoryOptions }) => {
   const [images, setImages] = useState([]);
   const [imgPreview, setImgPreview] = useState(false);
   const [productInfo, setProductInfo] = useState({
@@ -23,20 +22,6 @@ const ProductDrawer = ({ open, setOpen }) => {
 
   const [createNewProduct, { isLoading, isError, error }] =
     useCreateNewProductMutation();
-
-  const { data } = useGetAllCategoryQuery();
-
-  const categoryOptions = data?.data.map((item) => {
-    return {
-      value: item.id,
-      lebel: item.tittle,
-    };
-  });
-
-  categoryOptions?.unshift({
-    value: "",
-    lebel: "Select Category",
-  });
 
   const onsubmit = async (data) => {
     data.images = images;

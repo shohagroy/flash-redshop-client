@@ -24,7 +24,7 @@ const Banar = () => {
     <section className="py-4 mt-[7vh] border-b">
       <div className="hidden max-w-5xl mx-auto lg:grid grid-cols-3 gap-4">
         {banars?.map((item, i) => (
-          <div key={item?.key} className=" h-[150px]">
+          <div key={i} className=" h-[150px]">
             <Image
               className="w-full h-full duration-300 rounded-md shadow-md cursor-pointer hover:scale-105"
               src={item?.image}

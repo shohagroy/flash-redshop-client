@@ -48,8 +48,8 @@ const FormSelect = ({
               className="w-full border p-2 rounded-md border-black bg-gray-100"
               name={name}
             >
-              {options?.map((item) => (
-                <option key={item?.value} value={item?.value}>
+              {options?.map((item, i) => (
+                <option key={i} value={item?.value}>
                   {item?.lebel}
                 </option>
               ))}

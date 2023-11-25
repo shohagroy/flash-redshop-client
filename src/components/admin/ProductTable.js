@@ -3,7 +3,6 @@ import { AiOutlineRight, AiOutlineLeft } from "react-icons/ai";
 import { RiDeleteBin6Line } from "react-icons/ri";
 
 const ProductTable = ({ data, items, showPage, setShowPage }) => {
-  console.log(data);
   const deleteCategory = (deleteData) => {
     console.log("delete product ", deleteData);
   };
@@ -27,13 +26,13 @@ const ProductTable = ({ data, items, showPage, setShowPage }) => {
             </tr>
           </thead>
           <tbody className="text-[14px]">
-            {data?.map((item, i) => (
+            {data?.data?.map((item, i) => (
               <tr
                 key={item?.id}
                 className="text-left bg-white border-b border-opacity-20 border-gray-700 "
               >
                 <td className="px-3 py-2 text-left">
-                  <span>{i + 1}</span>
+                  <span>{(showPage - 1) * 5 + i + 1}</span>
                 </td>
 
                 <td className="px-3 py-2">
@@ -95,18 +94,18 @@ const ProductTable = ({ data, items, showPage, setShowPage }) => {
           </tbody>
         </table>
 
-        {/* <div className="rounded-b-md text-xs bg-white shadow-md border border-t-none font-semibold text-gray-500 ">
+        <div className="rounded-b-md text-xs bg-white shadow-md border border-t-none font-semibold text-gray-500 ">
           <div className="p-4  flex  justify-between items-center col-span-4">
             <p>
-              Showing {showPage <= 1 ? 1 : (showPage - 1) * 10} -{" "}
+              Showing {showPage <= 1 ? 1 : (showPage - 1) * 5} -{" "}
               {showPage <= 1
-                ? data?.count >= 10
-                  ? 10
-                  : data?.count
-                : showPage * 10 > data?.count
-                ? data?.count
-                : showPage * 10}{" "}
-              of {data?.count}
+                ? data?.meta?.total >= 6
+                  ? 5
+                  : data?.meta?.total
+                : showPage * 5 > data?.meta?.total
+                ? data?.meta?.total
+                : showPage * 5}{" "}
+              of {data?.meta?.total}
             </p>
 
             <div className="flex items-center">
@@ -147,7 +146,7 @@ const ProductTable = ({ data, items, showPage, setShowPage }) => {
                 <button
                   className={`p-2 bg-gray-200 text-black duration-300 rounded-md mx-1 hover:bg-red-600/40 hover:text-white`}
                   onClick={() => setShowPage(showPage === 1 ? 3 : showPage + 1)}
-                  disabled={showPage === Math.ceil(data.count / 10)}
+                  disabled={showPage === Math.ceil(data?.meta?.total / 5)}
                 >
                   {showPage === 1 ? 3 : showPage + 1}
                 </button>
@@ -155,11 +154,16 @@ const ProductTable = ({ data, items, showPage, setShowPage }) => {
 
               <span>-</span>
 
-              <button className="p-2 hover:bg-gray-200 duration-300 rounded-md mx-1">
-                {Math.ceil(data.count / 10)}
-              </button>
               <button
-                disabled={showPage === Math.ceil(data.count / 10)}
+                disabled={showPage === Math.ceil(data?.meta?.total / 5)}
+                onClick={() => setShowPage(showPage + 1)}
+                className="p-2 hover:bg-gray-200 duration-300 rounded-md mx-1"
+              >
+                {Math.ceil(data?.meta?.page + 1)}
+              </button>
+
+              <button
+                disabled={showPage === Math.ceil(data?.meta?.total / 5)}
                 className={`hover:bg-gray-200
                duration-300 rounded-md mx-1`}
                 onClick={() => setShowPage(showPage + 1)}
@@ -168,7 +172,7 @@ const ProductTable = ({ data, items, showPage, setShowPage }) => {
               </button>
             </div>
           </div>
-        </div> */}
+        </div>
       </div>
     </div>
   );

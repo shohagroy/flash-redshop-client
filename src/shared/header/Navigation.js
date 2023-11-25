@@ -198,8 +198,8 @@ const Navigation = () => {
     <div>
       <div className="hidden lg:block">
         <Flex gap="middle" align="center">
-          {menu.map((item) => (
-            <Link key={item.label} href={item.route}>
+          {menu.map((item, i) => (
+            <Link key={i} href={item.route}>
               <Button className="text-white font-bold" type="link">
                 {item.label}
               </Button>
