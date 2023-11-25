@@ -5,16 +5,29 @@ import FormInput from "../form/FormInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import FormSelect from "../form/FormSelect";
 import { userSchema } from "@/schemas/user";
+import { useCreateUserMutation } from "@/redux/features/user/userApi";
 
 const UserDrawer = ({ open, setOpen }) => {
+  const [createUser, { isLoading, isError, error }] = useCreateUserMutation();
+
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     password: "",
     role: "admin",
   });
-  const onsubmit = (data) => {
-    console.log("submit", data);
+  const onsubmit = async (data) => {
+    const result = await createUser(data).unwrap();
+
+    if (result?.success) {
+      setOpen(false);
+      setUserInfo({
+        name: "",
+        email: "",
+        password: "",
+        role: "admin",
+      });
+    }
   };
   return (
     <div
@@ -41,6 +54,12 @@ const UserDrawer = ({ open, setOpen }) => {
         </div>
 
         <div className="p-4 my-10">
+          {isError && (
+            <p className="text-center px-4 py-1 bg-red-100 text-red-600 rounded-md my-2 text-xl capitalize ">
+              {error?.data?.message || "Something went Wrong!"}
+            </p>
+          )}
+
           <Form
             defaultValues={userInfo}
             resolver={yupResolver(userSchema)}
@@ -85,7 +104,7 @@ const UserDrawer = ({ open, setOpen }) => {
               />
 
               <button className="w-[200px] text-center p-3 bg-blue-500 text-white mx-1 rounded-md">
-                Add User
+                {isLoading ? "Loading.." : "Add User"}
               </button>
             </div>
           </Form>
