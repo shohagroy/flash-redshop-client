@@ -4,20 +4,24 @@ import { useState } from "react";
 import Logo from "../../../assets/logo.webp";
 import Image from "next/image";
 import { useUserLoginMutation } from "@/redux/features/user/userApi";
+import { setToLocalStorage } from "@/utils/local-storage";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
   const [loginInfo, setLoginInfo] = useState({});
+  const router = useRouter();
 
   const [userLogin, { isLoading, isError, error }] = useUserLoginMutation();
-
-  console.log(isError, error);
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const result = await userLogin(loginInfo);
+    const result = await userLogin(loginInfo).unwrap();
 
-    console.log(result);
+    if (result?.success) {
+      setToLocalStorage("token", result?.data?.token);
+      router.push("/admin");
+    }
   };
 
   return (

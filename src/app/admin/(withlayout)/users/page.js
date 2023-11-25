@@ -5,6 +5,7 @@ import { useState } from "react";
 import UserDrawer from "@/components/admin/UserDrawer";
 import UserTable from "@/components/admin/UserTable";
 import { useGetAllUserQuery } from "@/redux/features/user/userApi";
+import Loading from "@/components/ui/Loading";
 
 const UserPage = () => {
   const [userDrawer, setUserDrawer] = useState(false);
@@ -18,12 +19,11 @@ const UserPage = () => {
 
   const { data, isLoading } = useGetAllUserQuery();
 
-  console.log(data?.data);
   return (
     <>
       <main>
         <section className="relative max-w-7xl mx-auto bg-gray-100 min-h-[90vh]">
-          <div className="">
+          <div className="mx-10 ">
             <h3 className="lg:py-4 text-xl font-semibold py-4 ">Users</h3>
 
             {/* products search section  */}
@@ -49,7 +49,7 @@ const UserPage = () => {
               </div>
             </div>
 
-            <UserTable data={data?.data} />
+            {isLoading ? <Loading /> : <UserTable data={data?.data} />}
           </div>
         </section>
 
