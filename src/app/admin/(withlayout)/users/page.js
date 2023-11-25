@@ -3,6 +3,8 @@
 import { IoSearchOutline } from "react-icons/io5";
 import { useState } from "react";
 import UserDrawer from "@/components/admin/UserDrawer";
+import UserTable from "@/components/admin/UserTable";
+import { useGetAllUserQuery } from "@/redux/features/user/userApi";
 
 const UserPage = () => {
   const [userDrawer, setUserDrawer] = useState(false);
@@ -13,6 +15,10 @@ const UserPage = () => {
     search: searchUsers,
     skip: showPage === 1 ? 0 : (showPage - 1) * 10,
   };
+
+  const { data, isLoading } = useGetAllUserQuery();
+
+  console.log(data?.data);
   return (
     <>
       <main>
@@ -42,6 +48,8 @@ const UserPage = () => {
                 </button>
               </div>
             </div>
+
+            <UserTable data={data?.data} />
           </div>
         </section>
 

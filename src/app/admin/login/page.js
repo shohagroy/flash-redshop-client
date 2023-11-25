@@ -1,25 +1,27 @@
 "use client";
 
-import Head from "next/head";
-import Link from "next/link";
 import { useState } from "react";
 import Logo from "../../../assets/logo.webp";
 import Image from "next/image";
+import { useUserLoginMutation } from "@/redux/features/user/userApi";
 
 const LoginPage = () => {
   const [loginInfo, setLoginInfo] = useState({});
 
-  const handleLogin = (e) => {
+  const [userLogin, { isLoading, isError, error }] = useUserLoginMutation();
+
+  console.log(isError, error);
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // loginUser(loginInfo);
+
+    const result = await userLogin(loginInfo);
+
+    console.log(result);
   };
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>User | Login</title>
-      </Head>
       <main>
         <div className="h-screen w-full flex border-b-2 bg-gray-100">
           <div className="flex justify-center items-center w-full">
@@ -47,6 +49,13 @@ const LoginPage = () => {
                       </div>
                     </div>
                     <div className="mt-10">
+                      <div>
+                        {isError && (
+                          <p className="my-2 p-2 bg-red-100 text-red-600 text-center rounded-md">
+                            {error?.data?.message || "Something went Wrong!"}
+                          </p>
+                        )}
+                      </div>
                       <form
                         onSubmit={handleLogin}
                         className="text-base font-nunito"
@@ -126,8 +135,7 @@ const LoginPage = () => {
                           </div>
                           <div>
                             <button className="w-full p-2 text-sm font-semibold text-center text-white transition duration-100 rounded-md md:text-lg font-nunito bg-gradient-to-r from-blue-600 to-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-300 hover:shadow-lg">
-                              {/* {isLoading ? "Loading..." : "Sign In"} */} Log
-                              in
+                              {isLoading ? "Loading..." : "log in"}
                             </button>
                           </div>
                         </div>

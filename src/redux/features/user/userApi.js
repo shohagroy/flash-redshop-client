@@ -11,14 +11,6 @@ export const userApi = apiSlice.injectEndpoints({
       invalidatesTags: ["users"],
     }),
 
-    getUserProfile: build.query({
-      query: () => ({
-        url: "/users/get-profile",
-        method: "GET",
-      }),
-      providesTags: ["users"],
-    }),
-
     getAllUser: build.query({
       query: (arg) => ({
         url: "/users",
@@ -27,7 +19,19 @@ export const userApi = apiSlice.injectEndpoints({
       }),
       providesTags: ["users"],
     }),
+
+    userLogin: build.mutation({
+      query: (data) => ({
+        url: "/users/login",
+        method: "POST",
+        body: data,
+      }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation } = userApi;
+export const {
+  useCreateUserMutation,
+  useGetAllUserQuery,
+  useUserLoginMutation,
+} = userApi;

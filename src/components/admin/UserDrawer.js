@@ -16,6 +16,7 @@ const UserDrawer = ({ open, setOpen }) => {
     password: "",
     role: "admin",
   });
+
   const onsubmit = async (data) => {
     const result = await createUser(data).unwrap();
 
