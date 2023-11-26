@@ -62,14 +62,12 @@ const InputImage = ({ images = [], imgPreview, setImages }) => {
             className="border mx-4  h-[100px] my-2 p-2 rounded-md w-[100px] flex items-center justify-center relative"
             key={i}
           >
-            <button
+            <p
               onClick={() => removeImage(i)}
-              className="z-50 text-red-600 absolute -top-3 -right-3"
-              // icon={<CloseOutlined />}
-              danger
+              className="z-50 cursor-pointer text-red-600 absolute -top-3 -right-3"
             >
               <IoIosCloseCircle />
-            </button>
+            </p>
             <img
               className="w-[100px] h-[100px]"
               src={preview}

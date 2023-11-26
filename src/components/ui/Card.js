@@ -1,21 +1,25 @@
 import React from "react";
-import Img from "../../assets/test.webp";
 import Image from "next/image";
 
-const Card = () => {
+const Card = ({ data }) => {
+  const { name, price, discount, images } = data || {};
+
   return (
     <div className="">
       <div className="">
         <Image
-          src={Img}
+          src={images[0]?.secure_url}
           className="hover:scale-105 duration-300"
           width={200}
           height={300}
           alt="image"
         />
       </div>
-      <p className="pt-1 text-[1rem]">FOX IPHONE CASE..</p>
-      <p className="text-[0.8rem]">৳6500 ৳7000 7% OFF</p>
+      <p className="pt-1 text-[1rem]">{name?.slice(0, 15)}...</p>
+      <p className="text-[0.75rem] font-semibold">
+        ৳{(price - (discount * 100) / price).toFixed(2)} <del>৳{price}</del>{" "}
+        <span className="text-red-600">{discount}% OFF</span>
+      </p>
 
       <div>
         <button className="w-full border border-black rounded-md p-2 my-3">

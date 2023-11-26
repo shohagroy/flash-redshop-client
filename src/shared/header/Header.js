@@ -6,6 +6,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { BiCategoryAlt } from "react-icons/bi";
 
 import React from "react";
+import Link from "next/link";
 
 const Header = () => {
   return (
@@ -14,7 +15,9 @@ const Header = () => {
         <div className="max-w-5xl mx-auto h-full">
           <div className="flex justify-between items-center h-full w-full ">
             <div className="w-full">
-              <Image src={Logo} alt="Flash" width={100} height={50} />
+              <Link href={"/"}>
+                <Image src={Logo} alt="Flash" width={100} height={50} />
+              </Link>
             </div>
 
             <div className="relative w-full">
@@ -28,13 +31,6 @@ const Header = () => {
                   placeholder="Search..."
                 />
               </div>
-
-              {/* seggest category section */}
-              {/* <div className="absolute left-0 top-100 w-full h-[300px]">
-              <div className="mt-2 bg-white h-full p-2 border shadow-md">
-                hello akjsdhflkasjfdlaskjdf;lml
-              </div>
-            </div> */}
             </div>
 
             <div className="flex justify-end w-full">
@@ -59,12 +55,6 @@ const Header = () => {
       <div className=" lg:hidden w-full h-[10vh] top-0 left-0 bg-white z-50 px-4">
         <div className="flex h-full w-full justify-between items-center">
           <Image src={Logo} alt="Flash" width={80} height={50} />
-          {/* <button
-            onClick={() => setMobileMenu(!mobileMenu)}
-            className="text-3xl text-gray-400"
-          >
-            <FaBars />
-          </button> */}
 
           <div className="flex justify-end w-full">
             <button className="p-2 mx-1 flex justify-center items-center">
