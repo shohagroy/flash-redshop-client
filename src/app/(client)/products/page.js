@@ -1,6 +1,7 @@
 "use client";
 
 import Card from "@/components/ui/Card";
+import Loading from "@/components/ui/Loading";
 import { useGetAllProductsQuery } from "@/redux/features/product/productApi";
 import { useSearchParams } from "next/navigation";
 import React, { useState } from "react";
@@ -26,6 +27,15 @@ const ProductPage = () => {
     query["categoryId"] = params.get("category");
   }
   const { data, isLoading } = useGetAllProductsQuery(query);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
+
   return (
     <main>
       <section>

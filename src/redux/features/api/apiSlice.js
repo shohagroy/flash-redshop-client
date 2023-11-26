@@ -9,7 +9,7 @@ export const apiSlice = createApi({
       //   ? "http://localhost:5000/api/v1"
       //   : process.env.NEXT_PUBLIC_BACKEND_BASE_URL,
 
-      "http://localhost:5000/api/v1",
+      "https://flash-redshop-server.vercel.app/api/v1",
     prepareHeaders: async (headers, { getState, endpoint }) => {
       const token = getFromLocalStorage("token");
 

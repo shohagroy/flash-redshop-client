@@ -1,6 +1,7 @@
 "use client";
 
 import SideBar from "@/components/admin/Sidebar";
+import Loading from "@/components/ui/Loading";
 import { decodedToken } from "@/utils/jwt";
 import { getFromLocalStorage } from "@/utils/local-storage";
 import { useRouter } from "next/navigation";
@@ -26,8 +27,8 @@ const Adminlauout = ({ children }) => {
 
   if (isLoading) {
     return (
-      <div style={{ width: "100%" }}>
-        <p>Loading...</p>
+      <div className="h-screen w-full flex justify-center items-center">
+        <Loading />
       </div>
     );
   }

@@ -2,6 +2,7 @@
 
 import Card from "@/components/ui/Card";
 import CategoryOptions from "@/components/ui/CategoryOptions";
+import Loading from "@/components/ui/Loading";
 import { useGetAllCategoryQuery } from "@/redux/features/category/categoryApi";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -16,6 +17,14 @@ export default function Home() {
       containerRefs.current[active].scrollIntoView({ behavior: "smooth" });
     }
   }, [active]);
+
+  if (isLoading) {
+    return (
+      <div>
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -56,12 +65,7 @@ export default function Home() {
                   </div>
                 </div>
               ) : (
-                <div
-                  className="flex justify-center items-center p-4  text-xl text-blue-600 font-semibold"
-                  key={category?.id}
-                >
-                  <p>No Products Found</p>
-                </div>
+                ""
               )
             )}
           </div>
